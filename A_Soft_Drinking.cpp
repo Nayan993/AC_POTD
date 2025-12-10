@@ -5,7 +5,11 @@ typedef long long ll;
 void solve() {
     int  n, k, l, c, d, p, nl, np;
     cin >> n>>k>>l>>c>>d>>p>>nl>>np;
-    
+    int totalliter = (k*l) / nl;
+    int totalslices = c*d;
+    int totalsalt = p/np;
+    int ans = min({totalliter,totalslices,totalsalt});
+    cout << ans / n<<endl;
 }
 
 int main() {
