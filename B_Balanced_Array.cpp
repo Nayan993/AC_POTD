@@ -1,0 +1,94 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define sza(x) ((int)x.size())
+#define all(a) (a).begin(), (a).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define pb push_back
+#define mp make_pair
+#define f first
+#define s second
+#define gcd(a, b) __gcd(a, b)
+
+using ll = long long;
+using ld = long double;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+using vi = vector<int>;
+using vll = vector<ll>;
+using vpii = vector<pii>;
+using vpll = vector<pll>;
+using vc = vector<char>;
+using umii = unordered_map<int, int>;
+using umci = unordered_map<char, int>;
+using umsi = unordered_map<string, int>;
+using si = set<int>;
+using sc = set<char>;
+
+const int MAX_N = 1e5 + 5;
+const ll MOD = 1e9 + 7;
+const ll INF = 1e9;
+const ld EPS = 1e-9;
+
+ll lcm(ll a, ll b) { return (a / gcd(a, b)) * b; }
+ll mod_add(ll a, ll b, ll m = MOD) { return (a % m + b % m) % m; }
+ll mod_sub(ll a, ll b, ll m = MOD) { return ((a % m - b % m) + m) % m; }
+ll mod_mul(ll a, ll b, ll m = MOD) { return (a % m * b % m) % m; }
+ll mod_exp(ll a, ll b, ll m = MOD) { ll res = 1; while (b > 0) { if (b & 1) res = mod_mul(res, a, m); a = mod_mul(a, a, m); b >>= 1; } return res; }
+ll binpow(ll b, ll n){ll result = 1; while (n > 0){ if (n & 1) result *= b; b *= b; n>>=1;} return result;}
+bool prime(ll a) { if (a == 1) return 0; for (int i = 2; i*i <= a; ++i) if (a % i == 0) return 0; return 1; }
+void yes() { cout<< "YES\n"; }
+void no() { cout<< "NO\n"; }
+
+template <typename T> void read( vector<T>& v) { for (auto& x : v) cin >> x; }
+template <typename T> void print( const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
+
+void solve(){
+    int n;
+    cin >> n;
+
+    if(n % 4 != 0){   // only possible when n/2 is even
+        cout << "NO\n";
+        return;
+    }
+
+    cout << "YES\n";
+
+    vector<int> a;
+    int half = n / 2;
+
+    // first half: evens
+    for(int i = 1; i <= half; i++){
+        a.push_back(i * 2);
+    }
+
+    // second half: first half-1 odds
+    int odd = 1;
+    for(int i = 1; i < half; i++){
+        a.push_back(odd);
+        odd += 2;
+    }
+
+    // last number to balance sum
+    int sum_even = (half * (half + 1));       // 2 + 4 + ... + 2*half = half*(half+1)
+    int sum_odd = (half - 1) * (half - 1);    // 1+3+...+(2*(half-1)-1)
+
+    int last = sum_even - sum_odd;    // balance
+    a.push_back(last);
+
+    for(int x : a) cout << x << " ";
+    cout << "\n";
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+    int t;
+    cin>> t;
+    while( t--){
+        solve();
+    }
+    return 0;
+}
