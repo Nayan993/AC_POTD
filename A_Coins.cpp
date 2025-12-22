@@ -44,19 +44,16 @@ void no() { cout<< "NO\n"; }
 template <typename T> void read( vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T> void print( const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
-void solve(){
-    ll n , k;
+void solve() {
+    long long n, k;
     cin >> n >> k;
-    if(k % 2 == 1){
-        for(int i = 0 ; i < k ; i++) cout << n <<" ";
-        cout << endl;
-        return;
-    }
-    for(int i = 0; i < k - 1; i++){
-        cout << n << " ";
-    }
-    cout << 0 << endl;
+    if (n >= k && k % 2 == 1) yes(); // k odd, n >= k → solution exists
+    else if (n % 2 == 0) yes();      // k even, n even → solution exists
+    else no();
 }
+
+
+
 
 int main(){
     ios_base::sync_with_stdio(0);

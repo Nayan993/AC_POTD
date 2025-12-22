@@ -45,17 +45,26 @@ template <typename T> void read( vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T> void print( const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 void solve(){
-    ll n , k;
-    cin >> n >> k;
-    if(k % 2 == 1){
-        for(int i = 0 ; i < k ; i++) cout << n <<" ";
-        cout << endl;
+    int n;
+    cin >> n;
+    int evencount = 0, oddcount = 0;
+    for(int i = 0; i < n ; i++){
+        int x;
+        cin >> x;
+        if(x % 2 == 0) evencount ++;
+        else oddcount ++;
+    }
+    if(evencount == n){
+        yes();
         return;
     }
-    for(int i = 0; i < k - 1; i++){
-        cout << n << " ";
+    if(oddcount % 2 == 0){
+        yes();
     }
-    cout << 0 << endl;
+    else{
+        no();
+    }
+    
 }
 
 int main(){

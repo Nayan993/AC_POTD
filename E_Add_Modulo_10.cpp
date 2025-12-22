@@ -15,13 +15,13 @@ void solve() {
             cnt05++;
     }
 
-    // Case 1: mixed (some in {0,5}, some not)
+    // ❌ mixed case
     if (cnt05 > 0 && cnt05 < n) {
         cout << "NO\n";
         return;
     }
 
-    // Case 2: all in {0,5}
+    // ✅ all {0,5}
     if (cnt05 == n) {
         for (int i = 0; i < n; i++) {
             if (a[i] % 10 == 5)
@@ -37,9 +37,12 @@ void solve() {
         return;
     }
 
-    // Case 3: all in cycle {2,4,6,8}
+    // ✅ cycle case
     set<ll> st;
     for (int i = 0; i < n; i++) {
+        while (a[i] % 10 != 2) {
+            a[i] += a[i] % 10;
+        }
         st.insert(a[i] % 20);
     }
 
@@ -55,8 +58,6 @@ int main() {
 
     int t;
     cin >> t;
-    while (t--) {
-        solve();
-    }
+    while (t--) solve();
     return 0;
 }

@@ -45,26 +45,20 @@ template <typename T> void read( vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T> void print( const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 void solve(){
-    ll n , k;
-    cin >> n >> k;
-    if(k % 2 == 1){
-        for(int i = 0 ; i < k ; i++) cout << n <<" ";
-        cout << endl;
-        return;
+    int n;
+    cin >> n;
+    int mini = INT_MAX;
+    for(int i = 0; i < n ; i++){
+        int x;
+        cin >> x;
+        mini = min(mini, abs(x));
     }
-    for(int i = 0; i < k - 1; i++){
-        cout << n << " ";
-    }
-    cout << 0 << endl;
+    cout << mini << endl;
 }
 
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
-    int t;
-    cin>> t;
-    while( t--){
-        solve();
-    }
+    solve();
     return 0;
 }

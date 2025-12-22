@@ -47,16 +47,16 @@ template <typename T> void print( const vector<T>& v) { for (const auto& x : v) 
 void solve(){
     int n;
     cin >> n;
-    long long postive = 0, negative = 0;
+    long long postive = 0, nega = 0;
     for(int i = 0; i < n ; i++){
         int x;
         cin >> x;
-        if(x == -1) negative++;
+        if(x == -1) nega++;
         else postive++;
     }
     long long ops = 0;
-    while(negative > postive || negative % 2 == 1){
-        negative--;
+    while(nega > postive || nega % 2 == 1){
+        nega--;
         postive++;
         ops++;
     }

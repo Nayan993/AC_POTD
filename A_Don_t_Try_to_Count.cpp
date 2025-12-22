@@ -45,17 +45,28 @@ template <typename T> void read( vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T> void print( const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 void solve(){
-    ll n , k;
-    cin >> n >> k;
-    if(k % 2 == 1){
-        for(int i = 0 ; i < k ; i++) cout << n <<" ";
-        cout << endl;
-        return;
+    int n , m;
+    cin >> n >> m;
+    string x, s;
+    cin >> x >> s;
+    for(auto  & p: s){
+        if (x.find(p) == string::npos) {
+            cout << -1 << endl;
+            return;
+        }
     }
-    for(int i = 0; i < k - 1; i++){
-        cout << n << " ";
+    int maxi = (m + n - 1) / n + 2;
+    int count = 0;
+    while(count <= maxi){
+        size_t pos = x.find(s);
+        if(pos != string::npos){
+            cout << count << endl;
+            return;
+        }
+        count ++;
+        x += x;
     }
-    cout << 0 << endl;
+    cout << -1 << endl;
 }
 
 int main(){

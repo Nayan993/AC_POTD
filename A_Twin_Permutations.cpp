@@ -45,17 +45,21 @@ template <typename T> void read( vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T> void print( const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 void solve(){
-    ll n , k;
-    cin >> n >> k;
-    if(k % 2 == 1){
-        for(int i = 0 ; i < k ; i++) cout << n <<" ";
-        cout << endl;
-        return;
+    int n;
+    cin >> n;
+    vector<int> nums(n);
+    for(int i = 0; i < n; i++) cin >> nums[i];
+    vector<pair<int, int>> v;
+    for(int i = 0; i < n; i++) v.push_back({nums[i], i});
+    sort(v.begin(), v.end());
+    vector<int> ans(n);
+    for(int i = 0; i < n; i++){
+        ans[v[i].second] = i+1;
     }
-    for(int i = 0; i < k - 1; i++){
-        cout << n << " ";
+    for(int i = 0; i < n; i++){
+        cout << ans[i] << " ";
     }
-    cout << 0 << endl;
+    cout << endl;
 }
 
 int main(){

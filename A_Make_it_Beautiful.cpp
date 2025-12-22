@@ -43,20 +43,33 @@ void no() { cout<< "NO\n"; }
 
 template <typename T> void read( vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T> void print( const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
-
-void solve(){
-    ll n , k;
-    cin >> n >> k;
-    if(k % 2 == 1){
-        for(int i = 0 ; i < k ; i++) cout << n <<" ";
-        cout << endl;
+void solve() {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    set<int> st;
+    for(int i = 0; i < n; i++){
+        cin >> a[i];
+        st.insert(a[i]);
+    }
+    if(st.size() == 1){
+        no();
         return;
     }
-    for(int i = 0; i < k - 1; i++){
-        cout << n << " ";
+    sort(a.begin(), a.end());
+    int s = 0;
+    int e = n - 1;
+    yes();
+    while(s <= e){
+        cout << a[e] << " ";
+        if(s != e) cout << a[s] << " ";
+        s++;
+        e--;
     }
-    cout << 0 << endl;
+    cout << endl;
 }
+
+
 
 int main(){
     ios_base::sync_with_stdio(0);
