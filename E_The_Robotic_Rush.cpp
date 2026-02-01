@@ -9,8 +9,6 @@
  *                    N A Y A N
  *            NIT Allahabad | MNNIT
  *
- *  "Code is like humor. When you have to explain it, it's bad."
- *  "It works on my machine" - Every Developer Ever
  */
 
 #include <bits/stdc++.h>

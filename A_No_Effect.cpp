@@ -9,8 +9,6 @@
  *                    N A Y A N
  *            NIT Allahabad | MNNIT
  *
- *  "Code is like humor. When you have to explain it, it's bad."
- *  "It works on my machine" - Every Developer Ever
  */
 
 #include <bits/stdc++.h>
@@ -94,8 +92,23 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+bool check(ll a, ll b, ll c){
+     return (lcm(a, c) * lcm(b, c)) == (a * b);
+}
 void solve() {
-    
+    ll a,b;
+    cin >> a >> b;
+    int gcdab = gcd(a,b);
+    int count = 0;
+    for(ll i = 1; i * i <= gcdab; i++){
+        if(gcdab % i == 0){
+            if(check(a,b,i)) count++;
+            if(i != gcdab / i && check(a,b,gcdab / i)) {
+                count++;
+            }
+        }
+    }
+    cout << count << endl;
 }
 
 /* ---------- Main ---------- */

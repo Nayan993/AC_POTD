@@ -9,8 +9,6 @@
  *                    N A Y A N
  *            NIT Allahabad | MNNIT
  *
- *  "Code is like humor. When you have to explain it, it's bad."
- *  "It works on my machine" - Every Developer Ever
  */
 
 #include <bits/stdc++.h>
@@ -94,8 +92,44 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+int sortthreepointers(vll  nums){
+    int count = 0;
+    int low = 0, mid = 0, high = nums.size() - 1;
+        while (mid <= high) {
+        if (nums[mid] == 0) {
+            int temp = nums[low];
+            nums[low] = nums[mid];
+            nums[mid] = temp;
+            low++;
+            mid++;
+            count++;
+        }
+        else if (nums[mid] == 1) {
+            mid++;
+        }
+        else { // arr[mid] == 2
+            int temp = nums[mid];
+            nums[mid] = nums[high];
+            nums[high] = temp;
+            high--;
+            count++;
+        }
+    }
+    return count;
+}
 void solve() {
-    
+    ll n;
+    cin >> n;
+    vll nums(n);
+    for(int i = 0; i < n; i++) cin >> nums[i];
+    ll q;
+    cin >> q;
+    while(q--){
+        ll l,r;
+        cin >> l >> r;
+        swap(nums[l - 1], nums[r - 1]);
+        cout << sortthreepointers(nums) << endl;
+    }
 }
 
 /* ---------- Main ---------- */
@@ -104,10 +138,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

@@ -9,8 +9,6 @@
  *                    N A Y A N
  *            NIT Allahabad | MNNIT
  *
- *  "Code is like humor. When you have to explain it, it's bad."
- *  "It works on my machine" - Every Developer Ever
  */
 
 #include <bits/stdc++.h>
@@ -95,7 +93,15 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    
+    int n;
+    cin >> n;
+    ll maxi = 0;
+    for(int i = 0; i < n; i++){
+        ll x;
+        cin >> x;
+        maxi = max(maxi ,x);
+    }
+    cout << 1LL * maxi * n << endl;
 }
 
 /* ---------- Main ---------- */

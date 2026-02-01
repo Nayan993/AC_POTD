@@ -9,8 +9,6 @@
  *                    N A Y A N
  *            NIT Allahabad | MNNIT
  *
- *  "Code is like humor. When you have to explain it, it's bad."
- *  "It works on my machine" - Every Developer Ever
  */
 
 #include <bits/stdc++.h>
@@ -94,8 +92,35 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+int getcost(ll val,int target){
+    int moves = 0;
+    while(val%2 != target){
+        if(val == 0)return -1;
+        val /= 2;
+        moves++;
+    }
+    return moves;
+}
 void solve() {
-    
+    int n;
+    cin >> n;
+    vll nums(n);
+    for(int i = 0; i < n; i++) cin >> nums[i];
+    ll ans1= 0, ans2 = 0;
+    bool ok1 = true, ok2 = true;
+      for(int i = 0; i < n; i++){
+        int c1 = getcost(nums[i], i%2);
+        if(c1 == -1) ok1=false;
+        else ans1 += c1;
+
+        int c2 = getcost(nums[i], 1-(i%2));
+        if(c2 == -1) ok2=false;
+        else ans2 += c2;
+    }
+    if(!ok1 && !ok2) cout << -1 << endl;
+    else if(!ok1) cout << ans2 << endl;
+    else if(!ok2) cout << ans1 << endl;
+    else cout << min(ans1, ans2) << endl;
 }
 
 /* ---------- Main ---------- */
@@ -104,10 +129,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

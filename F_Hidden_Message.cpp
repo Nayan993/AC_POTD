@@ -9,8 +9,6 @@
  *                    N A Y A N
  *            NIT Allahabad | MNNIT
  *
- *  "Code is like humor. When you have to explain it, it's bad."
- *  "It works on my machine" - Every Developer Ever
  */
 
 #include <bits/stdc++.h>
@@ -95,7 +93,24 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    
+    string s;
+    cin >> s;
+    unordered_map<char, int> freq;
+    for(char c : s) {
+        freq[c]++;
+    }
+    vector<pair<char, int>> v(freq.begin(), freq.end());
+    sort(v.begin(), v.end(), [](pair<char,int> &a, pair<char,int> &b) {
+        if(a.second == b.second)
+            return a.first < b.first;  
+        return a.second < b.second;  
+    });
+    string result = "";
+    for(auto &p : v) {
+        result += string(p.second, p.first);
+    }
+
+    cout << result << endl;
 }
 
 /* ---------- Main ---------- */
@@ -104,10 +119,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

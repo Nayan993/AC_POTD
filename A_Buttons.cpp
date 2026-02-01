@@ -95,29 +95,14 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 void solve() {
     ll a, b, c;
     cin >> a >> b >> c;
-        if (c % 2 == 1) // odd
-
+        if (c % 2 == 1) 
         {
-
-            // If c is odd, the player with more exclusive buttons will win
-
-            if (b > a) // Katie has more exclusive buttons
-
-                cout << "Second" << endl; // Katie wins
-
-            else
-
-                cout << "First" << endl; // Anna wins
-
+            if (b > a) cout << "Second" << endl;
+            else cout << "First" << endl; // Anna wins
         }
-
-        else // even
-
+        else 
         {
-
-            // If c is even, the player with more exclusive buttons will win
-
-            if (a > b) // Anna has more exclusive buttons
+            if (a > b) 
 
                 cout << "First" << endl; // Anna wins
 

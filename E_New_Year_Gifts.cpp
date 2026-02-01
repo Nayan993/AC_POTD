@@ -9,8 +9,6 @@
  *                    N A Y A N
  *            NIT Allahabad | MNNIT
  *
- *  "Code is like humor. When you have to explain it, it's bad."
- *  "It works on my machine" - Every Developer Ever
  */
 
 #include <bits/stdc++.h>
@@ -94,8 +92,29 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+ll beauty(ll x){
+     if(x==0) return 0;
+    return __builtin_popcount(x ^ (x >> 1)) - 1;
+}
 void solve() {
-    
+    ll n,k;
+    cin >> n >> k;
+    vll nums(n);
+    for(int i = 0; i < n; i++) cin >> nums[i];
+    priority_queue<int, vector<int>, greater<int>> pq;
+    ll currsum = 0;
+    ll ans = 0;
+    for(int i = n- 1; i >= 0; i--){
+        int b = beauty(nums[i]);
+        pq.push(b);
+        currsum += b;
+        if((int)pq.size() > k){
+            currsum -= pq.top();
+            pq.pop();
+        }
+        ans += currsum;
+    }
+    cout << ans << endl;
 }
 
 /* ---------- Main ---------- */

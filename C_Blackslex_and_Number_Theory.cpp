@@ -50,8 +50,10 @@ void solve(){
     vector<ll> nums(n);
     for(int i = 0 ; i < n ; i++) cin >> nums[i];
     sort(nums.begin(), nums.end());
-    ll ans = LLONG_MAX;
-    for(int i = 1; i < n; i++) ans = min(ans, nums[i] - nums[i - 1]);
+    ll ans = nums[0];
+    if(nums[1] - nums[0] > ans){
+        ans = nums[1] - nums[0];
+    }
     cout << ans << endl;
 }
 

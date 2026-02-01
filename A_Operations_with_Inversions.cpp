@@ -9,8 +9,6 @@
  *                    N A Y A N
  *            NIT Allahabad | MNNIT
  *
- *  "Code is like humor. When you have to explain it, it's bad."
- *  "It works on my machine" - Every Developer Ever
  */
 
 #include <bits/stdc++.h>
@@ -95,7 +93,26 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    
+    int n;
+    cin >> n;
+    vll nums(n);
+    for(int i = 0; i < n ; i++) cin >> nums[i];
+    if(is_sorted(nums.begin(), nums.end())) cout << 0 << endl;
+    else{
+        int count = 0;
+        int i = 0, j = i + 1;
+        while(j < n){
+            if(nums[i] > nums[j]){
+                count++;
+                j++;
+            }
+            else{
+                i = j;
+                j++;
+            }
+        }
+        cout << count << endl;
+    }
 }
 
 /* ---------- Main ---------- */
