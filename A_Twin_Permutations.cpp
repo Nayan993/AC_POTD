@@ -49,29 +49,9 @@ void solve(){
 
     vector<long long> nums(n);
     for(int i = 0; i < n; i++) cin >> nums[i];
-
-    vector<long long> ans = nums;
-    sort(ans.begin(), ans.end());
-
-    vector<long long> res(n);
-    int k = n - 1;
-    int j = k - 1;
-    int i = k - 1;
-    res[n- 1] = ans[n - 1];
-    res[0] = ans[0];
-    while(j >= 0){
-        if(ans[i] + nums[i] <= nums[k] + ans[k] && ans[i] != -1){
-            res[k - 1] = ans[i];
-            ans[i] = -1;
-            k--;
-            i--;
-            j--;
-        }
-        else{
-            i--;
-        }
+    for(int i = 0 ; i < n; i++){
+        cout << (n + 1) - nums[i] << " ";
     }
-    for(auto p : res) cout << p << " ";
     cout << endl;
 
 }
