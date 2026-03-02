@@ -93,36 +93,54 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    int n;
-    cin >> n;
-
-    vll nums(n);
-    read(nums);
-
-    vll ans;
-    ans.pb(nums[0]);
-
-    for(int i = 1; i < n; i++){
-        if(nums[i] < nums[i-1]) {
-            // only insert when decreasing
-            ans.pb(nums[i]);
+    vi d(4);
+    read(d);
+    sort(d.begin(), d.end());
+    for(int i = 23; i >= 0; i--){
+        for(int j = 59; j >= 0; j--){
+            vi ans;
+            ans.pb(i/10);
+            ans.pb(i % 10);
+            ans.pb(j / 10);
+            ans.pb(j % 10);
+            sort(ans.begin(), ans.end());
+            if(ans == d){
+                cout << setw(2) << setfill('0') << i << ":";
+                cout << setw(2) << setfill('0') << j;
+                return ;
+            }
         }
-        ans.pb(nums[i]);
     }
-
-    cout << ans.size() << endl;
-    print(ans);
+    cout << -1 << endl;/* ---------- Solve ---------- */
+void solve() {
+    vi d(4);
+    read(d);
+    sort(d.begin(), d.end());
+    for(int i = 23; i >= 0; i--){
+        for(int j = 59; j >= 0; j--){
+            vi ans;
+            ans.pb(i/10);
+            ans.pb(i % 10);
+            ans.pb(j / 10);
+            ans.pb(j % 10);
+            sort(ans.begin(), ans.end());
+            if(ans == d){
+                cout << setw(2) << setfill('0') << i << ":";
+                cout << setw(2) << setfill('0') << j;
+                return ;
+            }
+        }
+    }
+    cout << -1 << endl;
 }
+}
+
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

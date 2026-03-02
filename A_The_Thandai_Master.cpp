@@ -92,26 +92,21 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+bool subset(int i, int sum, int n, int k, vi &a){
+    if(sum == k) return true;
+    if(i == n || sum > k) return false;
+    if(subset(i + 1, sum + a[i], n, k, a)) return true;
+    if(subset(i + 1, sum, n, k, a)) return true;
+    return false;
+}
 void solve() {
-    int n;
-    cin >> n;
-
-    vll nums(n);
-    read(nums);
-
-    vll ans;
-    ans.pb(nums[0]);
-
-    for(int i = 1; i < n; i++){
-        if(nums[i] < nums[i-1]) {
-            // only insert when decreasing
-            ans.pb(nums[i]);
-        }
-        ans.pb(nums[i]);
-    }
-
-    cout << ans.size() << endl;
-    print(ans);
+    int n, k;
+    cin >> n >> k;
+    vi a(n);
+    read(a);
+    bool ans = subset(0, 0, n, k, a);
+    if(ans) yes();
+    else no();
 }
 /* ---------- Main ---------- */
 int main() {

@@ -95,24 +95,14 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 void solve() {
     int n;
     cin >> n;
-
-    vll nums(n);
+    vi nums(n);
     read(nums);
-
-    vll ans;
-    ans.pb(nums[0]);
-
-    for(int i = 1; i < n; i++){
-        if(nums[i] < nums[i-1]) {
-            // only insert when decreasing
-            ans.pb(nums[i]);
-        }
-        ans.pb(nums[i]);
+    if(is_sorted(nums.begin(), nums.end())){
+        cout << nums.size() << endl;
     }
-
-    cout << ans.size() << endl;
-    print(ans);
+    else cout << 1 << endl;
 }
+
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);

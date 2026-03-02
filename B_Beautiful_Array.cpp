@@ -95,7 +95,7 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 void solve() {
     ll n, k, b, s;
     cin >> n >> k >> b >> s;
-    if(ceil(s / k) != b) cout << -1 << endl;
+    if(ceil(s / k) > b) cout << -1 << endl;
     else{
         for(int i = 0; i < n - 1; i++) cout << 0 << " ";
         cout << s << endl;

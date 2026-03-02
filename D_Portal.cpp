@@ -92,27 +92,66 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
+void solve(){
+    int n,x,y;
+    cin>>n>>x>>y;
 
-    vll nums(n);
-    read(nums);
+    vi p(n);
+    read(p);
 
-    vll ans;
-    ans.pb(nums[0]);
+    vi middle;
+    for(int i= x;i< y;i++)
+        middle.pb(p[i]);
 
-    for(int i = 1; i < n; i++){
-        if(nums[i] < nums[i-1]) {
-            // only insert when decreasing
-            ans.pb(nums[i]);
-        }
-        ans.pb(nums[i]);
+    vi remainder;
+    for(int i= 0;i< x;i++)
+        remainder.pb(p[i]);
+    for(int i= y;i< n;i++)
+        remainder.pb(p[i]);
+
+    if(middle.empty()){
+        print(p);
+        return;
     }
 
-    cout << ans.size() << endl;
-    print(ans);
+    int m=sza(middle);
+    int start=0;
+
+    for(int i=1;i< m; i++){
+        for(int j=0;j< m;j++){
+            if(middle[(i+j)%m]<middle[(start+j)%m]){
+                start=i;
+                break;
+            }else if(middle[(i+j)%m]>middle[(start+j)%m]){
+                break;
+            }
+        }
+    }
+
+    vi best;
+    for(int i=0;i< m;i++)
+        best.pb(middle[(start+i)%m]);
+
+    int insertidx=sza(remainder);
+    for(int i=0;i< sza(remainder);i++){
+        if(best[0]<remainder[i]){
+            insertidx=i;
+            break;
+        }
+    }
+
+    for(int i=0;i< insertidx;i++)
+        cout<<remainder[i]<<" ";
+
+    for(int i=0;i< m;i++)
+        cout<<best[i]<<" ";
+
+    for(int i=insertidx;i< sza(remainder);i++)
+        cout<<remainder[i]<<" ";
+
+    cout << endl;
 }
+
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);

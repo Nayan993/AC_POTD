@@ -95,23 +95,32 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 void solve() {
     int n;
     cin >> n;
+    string s;
+    cin >> s;
 
-    vll nums(n);
-    read(nums);
-
-    vll ans;
-    ans.pb(nums[0]);
-
-    for(int i = 1; i < n; i++){
-        if(nums[i] < nums[i-1]) {
-            // only insert when decreasing
-            ans.pb(nums[i]);
-        }
-        ans.pb(nums[i]);
+    vector<int> ones, zeros;
+    for (int i = 0; i < n; i++) {
+        if (s[i] == '1') ones.push_back(i + 1);
+        else zeros.push_back(i + 1);
     }
 
-    cout << ans.size() << endl;
-    print(ans);
+    if (ones.size() % 2 == 0) {
+        cout << ones.size() << endl;
+        for (int i = 0; i < ones.size(); i++) {
+            cout << ones[i] << (i == ones.size() - 1 ? "" : " ");
+        }
+        cout << endl;
+    } 
+    else if (zeros.size() % 2 != 0) {
+        cout << zeros.size() << endl;
+        for (int i = 0; i < zeros.size(); i++) {
+            cout << zeros[i] << (i == zeros.size() - 1 ? "" : " ");
+        }
+        cout << endl;
+    } 
+    else {
+        cout << -1 << endl;
+    }
 }
 /* ---------- Main ---------- */
 int main() {

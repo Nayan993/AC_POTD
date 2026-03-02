@@ -92,37 +92,32 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-
-    vll nums(n);
-    read(nums);
-
-    vll ans;
-    ans.pb(nums[0]);
-
-    for(int i = 1; i < n; i++){
-        if(nums[i] < nums[i-1]) {
-            // only insert when decreasing
-            ans.pb(nums[i]);
-        }
-        ans.pb(nums[i]);
+int result(int x, vi &c){
+    if(x == 0) return 0;
+    if(x < 0) return INF;
+    int ans = INF;
+    for(int i = 0; i < c.size(); i++){
+        int res = result(x - c[i], c);
+        if(res != INF) ans = min(ans, 1 + res);
     }
-
-    cout << ans.size() << endl;
-    print(ans);
+    return ans;
 }
+void solve() {
+    int n, x;
+    cin >> n >> x;
+    vi c(n);
+    read(c);
+    int ans = result(x, c);
+    if(ans == INF) cout << -1 << endl;
+    else cout << ans << endl;
+}
+
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }
