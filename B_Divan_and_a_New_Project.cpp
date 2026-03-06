@@ -92,33 +92,48 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+
 void solve() {
-    long long a, b, c, d;
-    cin >> a >> b >> c >> d;
+    int n;
+    cin >> n;
 
-    if(d < b){
-        cout << -1 << endl;
-        return;
+    vector<long long> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+
+    vector<pair<long long,int>> v;
+    for (int i = 0; i < n; i++) {
+        v.push_back({a[i], i + 1});
     }
 
-    long long count = 0;
+    sort(v.rbegin(), v.rend());
 
-    while(b < d){
-        a++;
-        b++;
-        count++;
-    }
-    if(a < c){
-        cout << -1 << endl;
-        return;
-    }
-    while(a > c){
-        a--;
-        count++;
+    vector<long long> x(n + 1);
+    x[0] = 0;
+
+    long long pos = 1;
+    long long total = 0;
+
+    for (int i = 0; i < n; i++) {
+        int idx = v[i].second;
+
+        if (i % 2 == 0) {
+            x[idx] = pos;
+        } else {
+            x[idx] = -pos;
+            pos++;
+        }
+
+        total += 2LL * abs(x[idx]) * v[i].first;
     }
 
-    cout << count << endl;
+    cout << total << "\n";
+
+    for (int i = 0; i <= n; i++) {
+        cout << x[i] << " ";
+    }
+    cout << "\n";
 }
+
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);

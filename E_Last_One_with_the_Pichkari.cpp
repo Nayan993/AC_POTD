@@ -93,21 +93,15 @@
  
  /* ---------- Solve ---------- */
  void solve() {
-     int n, k;
+    int n, k;
     cin >> n >> k;
-
-    vector<int> v;
-
-    for(int i = 1; i <= n; i++)
-        v.push_back(i);
-
+    vi v;
+    for(int i = 1; i <= n; i++) v.pb(i);
     int idx = 0;
-
     while(v.size() > 1) {
         idx = (idx + k - 1) % v.size();
         v.erase(v.begin() + idx);
     }
-
     cout << v[0];
  }
  

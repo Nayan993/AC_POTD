@@ -93,32 +93,44 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    long long a, b, c, d;
-    cin >> a >> b >> c >> d;
+    int n, m;
+    cin >> n >> m;
 
-    if(d < b){
-        cout << -1 << endl;
-        return;
+    vector<vector<int>> v(n, vector<int>(m));
+    int neg = 0, pos = 0;
+
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            cin >> v[i][j];
+            if(v[i][j] < 0) neg++;
+            else pos++;
+        }
     }
 
-    long long count = 0;
+    if(neg % 2 == 0){
+        int sum = 0;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                sum += abs(v[i][j]);
+            }
+        }
+        cout << sum << endl;
+    }
+    else{
+        int sum = 0;
+        int mini = INT_MAX;
 
-    while(b < d){
-        a++;
-        b++;
-        count++;
-    }
-    if(a < c){
-        cout << -1 << endl;
-        return;
-    }
-    while(a > c){
-        a--;
-        count++;
-    }
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                sum += abs(v[i][j]);
+                mini = min(mini, abs(v[i][j]));
+            }
+        }
 
-    cout << count << endl;
+        cout << sum - 2 * mini << endl;
+    }
 }
+
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);

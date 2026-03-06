@@ -90,35 +90,30 @@ void read(vector<T>& v) { for (auto& x : v) cin >> x; }
 
 template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
-
-/* ---------- Solve ---------- */
 void solve() {
-    long long a, b, c, d;
-    cin >> a >> b >> c >> d;
+    int n, r, b;
+    cin >> n >> r >> b;
 
-    if(d < b){
-        cout << -1 << endl;
-        return;
+    string ans;
+
+    while(ans.size() != n){
+        int check = (r + b) / (b + 1); //_b_b_ b are serators and this for ceil value
+
+        while(check && r){
+            ans.pb('R');
+            r--;
+            check--;
+        }
+
+        if(b){
+            ans.pb('B');
+            b--;
+        }
     }
 
-    long long count = 0;
-
-    while(b < d){
-        a++;
-        b++;
-        count++;
-    }
-    if(a < c){
-        cout << -1 << endl;
-        return;
-    }
-    while(a > c){
-        a--;
-        count++;
-    }
-
-    cout << count << endl;
+    cout << ans << endl;
 }
+
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);

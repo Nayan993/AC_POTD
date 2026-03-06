@@ -95,8 +95,8 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 void solve() {
     ll a, b;
     cin >> a >> b;
-    cout << __builtin_popcount(1100611139403776) << endl;
-    cout << __builtin_popcount(1001) << endl;
+    cout << __builtin_popcountll(1100611139403776) << endl;
+    cout << __builtin_popcountll(1001) << endl;
 }
 
 /* ---------- Main ---------- */

@@ -92,22 +92,10 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
-bool subset(int i, int sum, int n, int k, vi &a){
-    if(sum == k) return true;
-    if(i == n || sum > k) return false;
-    if(subset(i + 1, sum + a[i], n, k, a)) return true;
-    if(subset(i + 1, sum, n, k, a)) return true;
-    return false;
-}
 void solve() {
-    int n, k;
-    cin >> n >> k;
-    vi a(n);
-    read(a);
-    bool ans = subset(0, 0, n, k, a);
-    if(ans) yes();
-    else no();
+    
 }
+
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);

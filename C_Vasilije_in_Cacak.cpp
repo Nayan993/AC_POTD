@@ -95,14 +95,10 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 void solve() {
     ll n, k, x;
     cin >> n >> k >> x;
-    if(x < n || x < k){
-        no();
-        return;
-    }
-    if(n*(n + 1) / 2 < x){
-        no();
-        return;
-    }
+   ll mini = k * (k + 1) / 2;
+   ll maxi = k * n - k *(k - 1) / 2;
+   if(x >= mini && x <= maxi) yes();
+   else no();
     
 }
 

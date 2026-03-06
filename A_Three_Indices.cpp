@@ -93,31 +93,23 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    long long a, b, c, d;
-    cin >> a >> b >> c >> d;
-
-    if(d < b){
-        cout << -1 << endl;
+    int n;
+    cin >> n;
+    vi p(n);
+    read(p);
+    set<int> s(p.begin(), p.end());
+    if(p.size() != s.size()){
+        no();
         return;
     }
-
-    long long count = 0;
-
-    while(b < d){
-        a++;
-        b++;
-        count++;
+    for(int i = 1; i < n - 1; i++){
+        if(p[i] > p[i - 1] && p[i] > p[i + 1]){
+            yes();
+            cout << i <<" " << i + 1 << " " << i + 2 << endl;
+            return;
+        }
     }
-    if(a < c){
-        cout << -1 << endl;
-        return;
-    }
-    while(a > c){
-        a--;
-        count++;
-    }
-
-    cout << count << endl;
+    no();
 }
 /* ---------- Main ---------- */
 int main() {
