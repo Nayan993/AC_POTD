@@ -93,21 +93,17 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k, b, s;
-    cin >> n >> k >> b >> s;
+    int n;
+    cin >> n;
+    vll a(n);
+    read(a);
     int count = 0;
-    ll temp = s;
-    while(temp / k <= b){
-        temp -= b;
-        count ++;
+    for(int i = 0; i < n; i++){
+        if(a[i] != 0 && (i == 0 || a[i - 1] == 0)) count++;
     }
-    count += 1;
-    if(count + 1 <= n){
-        
-    }
-    else{
-        cout << -1 << endl;
-    }
+    if(count == 0) cout << 0 << endl;
+    else if(count == 1) cout << 1 << endl;
+    else cout << 2 << endl;
 }
 
 /* ---------- Main ---------- */

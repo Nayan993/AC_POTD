@@ -92,22 +92,37 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+int mini(string s, string target){
+    int pos1 = -1, pos2 = -1;
+    for(int i = s.size() - 1; i >= 0; i--){
+        if(s[i] == target[1]){
+            pos2 = i;
+            break;
+        }
+    }
+    if(pos2 == -1) return INF;
+
+    for(int i = pos2 - 1; i >= 0; i--){
+        if(s[i] == target[0]){
+            pos1 = i;
+            break;
+        }
+    }
+
+    if(pos1 == -1) return INF;
+
+    return(s.size() - pos1 - 2);
+}
 void solve() {
-    ll n, k, b, s;
-    cin >> n >> k >> b >> s;
-    int count = 0;
-    ll temp = s;
-    while(temp / k <= b){
-        temp -= b;
-        count ++;
-    }
-    count += 1;
-    if(count + 1 <= n){
-        
-    }
-    else{
-        cout << -1 << endl;
-    }
+    string s;
+    cin >> s;
+    int ans = INF;
+    ans = min(ans, mini(s, "00"));
+    ans = min(ans, mini(s, "25"));
+    ans = min(ans, mini(s, "75"));
+    ans = min(ans, mini(s, "50"));
+
+    cout << ans << endl;
 }
 
 /* ---------- Main ---------- */

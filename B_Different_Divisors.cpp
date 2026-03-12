@@ -93,21 +93,14 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k, b, s;
-    cin >> n >> k >> b >> s;
-    int count = 0;
-    ll temp = s;
-    while(temp / k <= b){
-        temp -= b;
-        count ++;
-    }
-    count += 1;
-    if(count + 1 <= n){
-        
-    }
-    else{
-        cout << -1 << endl;
-    }
+    ll d;
+    cin >> d;
+    ll p = 1 + d;
+    while(!prime(p)) p++;
+    ll q = p + d;
+    while(!prime(q)) q++;
+    cout << p * q << endl;
+
 }
 
 /* ---------- Main ---------- */

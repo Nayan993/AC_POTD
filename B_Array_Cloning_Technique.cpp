@@ -93,21 +93,27 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k, b, s;
-    cin >> n >> k >> b >> s;
-    int count = 0;
-    ll temp = s;
-    while(temp / k <= b){
-        temp -= b;
-        count ++;
+    int n;
+    cin >> n;
+    vll a(n);
+    read(a);
+    unordered_map<ll, int> freq;
+    for(auto p : a) freq[p]++;
+    if(freq.size() == 1){
+        cout << 0 << endl;
+        return;
     }
-    count += 1;
-    if(count + 1 <= n){
-        
+    int maxi = 0;
+    for(auto p : freq) maxi = max(maxi, p.second);
+    int have  = maxi;
+    int ops = 0;
+    while(have < n){
+        ops++;
+        int add = min(have, n - have);
+        ops += add;
+        have += add;
     }
-    else{
-        cout << -1 << endl;
-    }
+    cout << ops << endl;
 }
 
 /* ---------- Main ---------- */

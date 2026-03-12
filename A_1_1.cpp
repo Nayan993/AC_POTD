@@ -83,7 +83,6 @@ bool prime(ll a) {
 /* ---------- Output Helpers ---------- */
 inline void yes() { cout << "YES\n"; }
 inline void no()  { cout << "NO\n"; }
-
 /* ---------- IO Helpers ---------- */
 template <typename T>
 void read(vector<T>& v) { for (auto& x : v) cin >> x; }
@@ -93,21 +92,28 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k, b, s;
-    cin >> n >> k >> b >> s;
-    int count = 0;
-    ll temp = s;
-    while(temp / k <= b){
-        temp -= b;
-        count ++;
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    string temp = s;
+    int maxi = 0;
+    for(int i = 1; i < n - 1; i++){
+        if(s[i - 1] == '1' && s[i + 1] == '1' && s[i] == '0') s[i] = '1';
     }
-    count += 1;
-    if(count + 1 <= n){
-        
+    for(int i = 0; i < n; i++){
+        if(s[i] == '1') maxi++;
     }
-    else{
-        cout << -1 << endl;
+    s = temp;
+    int mini = 0;
+    for(int i = 1; i < n - 1; i++){
+        if(s[i - 1] == '1' && s[i + 1] == '1' && s[i] == '1') s[i] = '0';
     }
+    for(int i = 0; i < n; i++){
+        if(s[i] == '1') mini++;
+    }
+    cout << mini << " " << maxi << endl;
+
 }
 
 /* ---------- Main ---------- */

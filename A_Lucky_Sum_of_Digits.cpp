@@ -92,22 +92,31 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+bool valid(int i){
+    string s = to_string(i);
+    for(int i = 0; i < s.size(); i++){
+        if(s[i] != '4' && s[i] != '7') return false;
+    }
+    return true;
+}
+bool sum(int x , int n){
+    int sum = 0;
+    while(x > 0){
+        sum += (x % 10);
+        x /= 10;
+    }
+    return sum == n;
+}
 void solve() {
-    ll n, k, b, s;
-    cin >> n >> k >> b >> s;
-    int count = 0;
-    ll temp = s;
-    while(temp / k <= b){
-        temp -= b;
-        count ++;
+    int n;
+    cin >> n;
+    for(int i = 4; i <= 1000000; i++){
+        if(valid(i) && sum(i, n)){
+            cout << i << endl;
+            return;
+        }
     }
-    count += 1;
-    if(count + 1 <= n){
-        
-    }
-    else{
-        cout << -1 << endl;
-    }
+    cout << -1 << endl;
 }
 
 /* ---------- Main ---------- */
@@ -116,10 +125,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }
