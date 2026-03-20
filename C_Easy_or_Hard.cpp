@@ -93,10 +93,40 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    int n;
+    cin >> n;
+    unordered_map<ll,int> f;
+    ll x;
+    for(int i=0;i<n;i++){
+        cin >> x;
+        f[x]++;
+    }
+    if(f.size() == 1){
+        cout << "NO" << endl;
+        return;
+    }
+    if(f.size() == 2){
+        cout << "NO" << endl;
+        return;
+    }
+    if(f.size() == 3){
+        vll v;
+        vi c;
+        for(auto &p: f){
+            v.push_back(p.first);
+            c.push_back(p.second);
+        }
+        if((v[0]^v[1]^v[2]) != 0){
+            cout << "NO" << endl;
+            return;
+        }
+        int maxi = max({c[0],c[1],c[2]});
+        int mini = min({c[0],c[1],c[2]});
+        if(maxi - mini <= 1) cout << "YES" << endl;
+        else cout << "NO" << endl;
+        return;
+    }
+    cout << "NO" << endl;
 }
 
 /* ---------- Main ---------- */

@@ -93,10 +93,9 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    ll x;
+    cin >> x;
+    
 }
 
 /* ---------- Main ---------- */

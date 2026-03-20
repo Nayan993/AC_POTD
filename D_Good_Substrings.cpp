@@ -92,11 +92,62 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+#include <bits/stdc++.h>
+using namespace std;
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct PairHash {
+    size_t operator()(const pair<long long,long long>& p) const {
+        return p.first * 1000000009LL + p.second;
+    }
+};
+
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+
+    string s, t;
+    cin >> s >> t;
+
+    int k;
+    cin >> k;
+
+    int n = s.size();
+
+    const long long P1 = 31;
+    const long long P2 = 37;
+
+    const long long MOD1 = 1000000007;
+    const long long MOD2 = 1000000009;
+
+    unordered_set<pair<long long,long long>, PairHash> st;
+
+    st.reserve(2000000);
+    st.max_load_factor(0.7);
+
+    for (int i = 0; i < n; i++) {
+
+        long long h1 = 0;
+        long long h2 = 0;
+
+        int bad = 0;
+
+        for (int j = i; j < n; j++) {
+
+            if (t[s[j] - 'a'] == '0')
+                bad++;
+
+            if (bad > k)
+                break;
+
+            h1 = (h1 * P1 + (s[j] - 'a' + 1)) % MOD1;
+            h2 = (h2 * P2 + (s[j] - 'a' + 1)) % MOD2;
+
+            st.insert({h1, h2});
+        }
+    }
+
+    cout << st.size() << endl;
 }
 
 /* ---------- Main ---------- */
@@ -105,10 +156,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

@@ -93,10 +93,21 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    int n;
+    cin >> n;
+    vi nums(7);
+    read(nums);
+    int sum = 0;
+    int i = 0;
+    while(i < 7){
+        sum += nums[i];
+        if(sum >= n){
+            cout << i + 1 << endl;
+            return;
+        }
+        i++;
+        if(i == 7 && sum < n ) i = 0;
+    }
 }
 
 /* ---------- Main ---------- */
@@ -105,10 +116,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

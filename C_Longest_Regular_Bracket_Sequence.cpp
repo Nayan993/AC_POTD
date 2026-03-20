@@ -91,24 +91,40 @@ void read(vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
-/* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    string s;
+    cin >> s;
+    stack<int> st;
+    st.push(-1);
+    int maxi = 0;
+    int count = 0;
+    for(int i = 0; i < s.size(); i++){
+        if(s[i] == '('){
+            st.push(i);
+        }else{
+            st.pop();
+            if(st.empty()){
+                st.push(i);
+            }else{
+                int len = i - st.top();
+                if(len > maxi){
+                    maxi = len;
+                    count = 1;
+                }else if (len == maxi){
+                    count++;
+                }
+            }
+        }
+    }
+    if(maxi == 0) count = 1;
+    cout << maxi << " " << count << endl;
 }
-
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

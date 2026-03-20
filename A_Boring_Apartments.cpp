@@ -93,10 +93,22 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    int x;
+    cin >> x;
+    string call = to_string(x);
+    int maxi = call[0] - '0';
+    int sum = 0;
+    for(int i = 1; i <= maxi; i++){
+        int temp = i;
+        while(temp <= 9999){
+            string neww = to_string(temp);
+            sum += neww.size();
+            if(temp == x) break;
+            neww.pb(i + '0');
+            temp = stoi(neww);
+        }
+    }
+    cout << sum << endl;
 }
 
 /* ---------- Main ---------- */

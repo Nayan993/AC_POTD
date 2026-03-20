@@ -93,12 +93,23 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    ll a, b, c;
+    cin >> a >> b >> c;
+    bool answer = false;
+		long long new_a = 2 * b - c; // Calculate the potential new value for 'a'
+		if (new_a / a > 0 && new_a % a == 0) // Check if new_a is a positive multiple of 'a'
+			answer = true;
+		long long new_b = (a + c) / 2; // Calculate the potential new value for 'b'
+		if (new_b / b > 0 && new_b % b == 0 && (c - a) % 2 == 0) // Check if new_b is a positive multiple of 'b' and (c-a) is even
+			answer = true;
+		long long new_c = 2 * b - a; // Calculate the potential new value for 'c'
+		if (new_c / c > 0 && new_c % c == 0) // Check if new_c is a positive multiple of 'c'
+			answer = true;
+		if (answer)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
 }
-
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);

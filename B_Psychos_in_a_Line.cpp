@@ -93,10 +93,27 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for(int i = 0; i < n; i++) cin >> a[i];
+
+    stack<pair<int,int>> st;
+    int ans = 0;
+
+    for(int i = n - 1; i >= 0; i--) {
+        int steps = 0;
+
+        while(!st.empty() && a[i] > st.top().first) {
+            steps = max(steps + 1, st.top().second);
+            st.pop();
+        }
+
+        ans = max(ans, steps);
+        st.push({a[i], steps});
+    }
+
+    cout << ans << endl;
 }
 
 /* ---------- Main ---------- */
@@ -105,10 +122,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

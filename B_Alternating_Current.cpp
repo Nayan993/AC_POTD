@@ -93,10 +93,16 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    string s;
+    cin >> s;
+    stack<char> st;
+    st.push(s[0]);
+    for(int i = 1; i < s.size(); i++){
+        if(!st.empty() && s[i] == st.top()) while(!st.empty() && st.top() == s[i]) st.pop();
+        else st.push(s[i]);
+    }
+    if(st.empty()) cout << "Yes" << endl;
+    else cout << "No" << endl;
 }
 
 /* ---------- Main ---------- */
@@ -105,10 +111,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

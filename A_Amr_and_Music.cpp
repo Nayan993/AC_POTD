@@ -93,22 +93,39 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
+    int n, k;
     cin >> n >> k;
-    vll a(n);
-    read(a);
-}
 
+    vector<pair<int,int>> a(n);
+
+    for(int i = 0; i < n; i++){
+        cin >> a[i].first;
+        a[i].second = i + 1;
+    }
+
+    sort(a.begin(), a.end()); // sort by days
+
+    vector<int> ans;
+    int sum = 0;
+
+    for(int i = 0; i < n; i++){
+        if(sum + a[i].first <= k){
+            sum += a[i].first;
+            ans.push_back(a[i].second);
+        }
+    }
+
+    cout << ans.size() << endl;
+
+    for(int x : ans) cout << x << " ";
+    cout << endl;
+}
 /* ---------- Main ---------- */
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

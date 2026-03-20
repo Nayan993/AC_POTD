@@ -93,10 +93,21 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    string p, h;
+    cin >> p >> h;
+    unordered_map<char,int> freq1;
+    for(auto it : p) freq1[it]++;
+    for(int i = 0; i + p.size() <= h.size(); i++){
+        unordered_map<char,int> freq2;
+        for(int j = i; j < i + p.size(); j++){
+            freq2[h[j]]++;
+        }
+        if(freq1 == freq2){
+            yes();
+            return;
+        }
+    }
+    no();
 }
 
 /* ---------- Main ---------- */

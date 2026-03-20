@@ -93,10 +93,23 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
+    int n;
+    cin >> n;
+    vi a(n);
     read(a);
+    vector<pair<int, int>> maxies;
+    for(int i = 0; i < n; i++) maxies.pb({a[i], i});
+    sort(maxies.begin(), maxies.end(), greater<pair<int,int>>());
+    int temp = n;
+    int count = 0;
+    for(auto p: maxies){
+        if(p.second <= temp){
+            temp = p.second - 1;
+            count ++;
+        }
+        if(temp < 0) break;
+    }
+    cout << count << endl;
 }
 
 /* ---------- Main ---------- */

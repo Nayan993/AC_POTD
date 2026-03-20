@@ -93,10 +93,18 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
     vll a(n);
     read(a);
+    vll ans;
+    ans.pb(a[n - 1]);
+    for(int i = n - 2; i >= 0; i--){
+        if(a[i] < ans.back()) ans.pb(a[i]);
+        else if(ans.back() == 0) ans.pb(0);
+        else ans.pb(min(ans.back() - 1, a[i] - 1));
+    }
+    cout << accumulate(ans.begin(), ans.end(), 0LL) << endl;
 }
 
 /* ---------- Main ---------- */
@@ -105,10 +113,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

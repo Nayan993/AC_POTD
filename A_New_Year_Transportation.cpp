@@ -93,10 +93,23 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
+    int n, t;
+    cin >> n >> t;
+    vi a(n - 1);
     read(a);
+    int i = 0;
+    while(i < n - 1){
+        if(i == t -1){
+            yes();
+            return;
+        }
+        i += a[i];
+    }
+    if(i  == t - 1){
+        yes();
+        return;
+    }
+    no();
 }
 
 /* ---------- Main ---------- */
@@ -104,11 +117,6 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

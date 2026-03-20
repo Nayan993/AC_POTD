@@ -87,16 +87,23 @@ inline void no()  { cout << "NO\n"; }
 /* ---------- IO Helpers ---------- */
 template <typename T>
 void read(vector<T>& v) { for (auto& x : v) cin >> x; }
-
 template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k;
-    cin >> n >> k;
-    vll a(n);
-    read(a);
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int ans = n;
+    for(int i = 0; i < n; i++){
+        if(s[i] == '1'){
+          ans = max(ans, 2 * (i + 1));
+          ans = max(ans, 2*(n- i));
+        }
+    }
+    cout << ans << "\n";
 }
 
 /* ---------- Main ---------- */
