@@ -92,48 +92,39 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
+bool left(int idx, int steps, vll &a){
+    int i = idx - 1;
+    while(i >= 0){
+        if(steps == 0) return true;
+        if(a[i] < a[idx]) return false;
+        steps--;
+        i--;
+    }
+    return true;
+}
+bool right(int idx, int steps, vll &a){
+    int i = idx + 1;
+    while(i < a.size()){
+        if(steps == 0) return true;
+        if(a[i] < a[idx]) return false;
+        steps--;
+        i++;
+    }
+    return true;
+}
 void solve() {
-    int n;
-    cin >> n;
-    string file = "/";
-
-    while(n--){
-        string command;
-        cin >> command;
-        if(command == "pwd"){
-            cout << file << endl;
-        }
-        else{
-            string dir;
-            cin >> dir;
-            int i = 0;
-            if(dir[0] == '/'){
-                file = "/";
-                i = 1;
-            }
-            string temp = "";
-            while(i <= dir.size()){
-                if(i == dir.size() || dir[i] == '/'){
-                    if(temp == ".."){
-                        if(file.size() > 1){
-                            file.pop_back();
-                            while(file.back() != '/') file.pop_back();
-                        }
-                    }
-                    else if(temp != ""){
-                        if(file.back() != '/') file.push_back('/');
-                        file += temp;
-                        file.push_back('/');
-                    }
-                    temp = "";
-                }
-                else{
-                    temp += dir[i];
-                }
-                i++;
-            }
+    int n, x, y;
+    cin >> n >> x >> y;
+    vll a(n);
+    read(a);
+    int index;
+    for(int i = 0; i < n; i++){
+        if(left(i, x, a) && right(i, y, a)){
+            index = i + 1;
+            break;
         }
     }
+    cout << index << endl;
 }
 
 /* ---------- Main ---------- */

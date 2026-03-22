@@ -95,45 +95,9 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 void solve() {
     int n;
     cin >> n;
-    string file = "/";
-
-    while(n--){
-        string command;
-        cin >> command;
-        if(command == "pwd"){
-            cout << file << endl;
-        }
-        else{
-            string dir;
-            cin >> dir;
-            int i = 0;
-            if(dir[0] == '/'){
-                file = "/";
-                i = 1;
-            }
-            string temp = "";
-            while(i <= dir.size()){
-                if(i == dir.size() || dir[i] == '/'){
-                    if(temp == ".."){
-                        if(file.size() > 1){
-                            file.pop_back();
-                            while(file.back() != '/') file.pop_back();
-                        }
-                    }
-                    else if(temp != ""){
-                        if(file.back() != '/') file.push_back('/');
-                        file += temp;
-                        file.push_back('/');
-                    }
-                    temp = "";
-                }
-                else{
-                    temp += dir[i];
-                }
-                i++;
-            }
-        }
-    }
+    vi a(n);
+    read(a);
+    
 }
 
 /* ---------- Main ---------- */
@@ -142,6 +106,10 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    solve();
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
     return 0;
 }

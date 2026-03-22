@@ -91,57 +91,33 @@ void read(vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
-/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string file = "/";
-
-    while(n--){
-        string command;
-        cin >> command;
-        if(command == "pwd"){
-            cout << file << endl;
-        }
-        else{
-            string dir;
-            cin >> dir;
-            int i = 0;
-            if(dir[0] == '/'){
-                file = "/";
-                i = 1;
-            }
-            string temp = "";
-            while(i <= dir.size()){
-                if(i == dir.size() || dir[i] == '/'){
-                    if(temp == ".."){
-                        if(file.size() > 1){
-                            file.pop_back();
-                            while(file.back() != '/') file.pop_back();
-                        }
-                    }
-                    else if(temp != ""){
-                        if(file.back() != '/') file.push_back('/');
-                        file += temp;
-                        file.push_back('/');
-                    }
-                    temp = "";
-                }
-                else{
-                    temp += dir[i];
-                }
-                i++;
-            }
-        }
+long long sum(string s){
+    long long ans = 0;
+    for(char c : s){
+        ans += (c - '0');
     }
+    return ans;
 }
 
-/* ---------- Main ---------- */
+void solve() {
+    string n;
+    cin >> n;
+
+    int count = 0;
+
+    while(n.size() > 1){
+        long long s = sum(n);
+        n = to_string(s);
+        count++;
+    }
+
+    cout << count << endl;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    cout.tie(nullptr);
-    
+
     solve();
     return 0;
 }

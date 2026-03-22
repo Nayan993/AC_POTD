@@ -93,47 +93,24 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    int n;
-    cin >> n;
-    string file = "/";
-
+    int s, n;
+    cin >> s >> n;
+    vector<pair<int, int>> power;
     while(n--){
-        string command;
-        cin >> command;
-        if(command == "pwd"){
-            cout << file << endl;
-        }
-        else{
-            string dir;
-            cin >> dir;
-            int i = 0;
-            if(dir[0] == '/'){
-                file = "/";
-                i = 1;
-            }
-            string temp = "";
-            while(i <= dir.size()){
-                if(i == dir.size() || dir[i] == '/'){
-                    if(temp == ".."){
-                        if(file.size() > 1){
-                            file.pop_back();
-                            while(file.back() != '/') file.pop_back();
-                        }
-                    }
-                    else if(temp != ""){
-                        if(file.back() != '/') file.push_back('/');
-                        file += temp;
-                        file.push_back('/');
-                    }
-                    temp = "";
-                }
-                else{
-                    temp += dir[i];
-                }
-                i++;
-            }
-        }
+        int x, y;
+        cin >> x >> y;
+        power.pb({x,y});
     }
+    sort(power.begin(), power.end());
+    for(auto p: power){
+        if(s <= p.first){
+            no();
+            return;
+        }
+        s += p.second;
+    }
+    yes();
+
 }
 
 /* ---------- Main ---------- */

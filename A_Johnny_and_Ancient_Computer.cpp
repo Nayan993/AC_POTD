@@ -95,8 +95,20 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 void solve() {
     ll a, b;
     cin >> a >> b;
-    cout << __builtin_popcountll(1100611139403776) << endl;
-    cout << __builtin_popcountll(1001) << endl;
+    ll ra = a;
+    ll rb = b;
+    while(ra % 2 == 0) ra /= 2;
+    while(rb % 2 == 0) rb /= 2;
+    if(ra != rb){
+        cout << - 1 << endl;
+    }
+    else{
+        a /= ra;
+        b /= rb;
+        a = log2(a);
+        b = log2(b);
+        cout << (long long)ceil(abs(a - b) / 3.0) << endl; // because max powers can  be -3,-2,-1,0,1,2,3int 
+    }
 }
 
 /* ---------- Main ---------- */

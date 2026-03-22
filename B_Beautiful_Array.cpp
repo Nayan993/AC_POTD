@@ -93,21 +93,28 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    ll n, k, b, s;
-    cin >> n >> k >> b >> s;
-    int count = 0;
-    ll temp = s;
-    while(temp / k <= b){
-        temp -= b;
-        count ++;
-    }
-    count += 1;
-    if(count + 1 <= n){
-        
-    }
-    else{
-        cout << -1 << endl;
-    }
+    long long n, k, b, s;
+		cin >> n >> k >> b >> s;
+		long long minimum_s = (k * b);
+		long long maximum_s = (k * b) + (k - 1) * n;
+		if (s < minimum_s || s > maximum_s)
+			cout << "-1" << endl; 
+		else
+		{
+			vector<long long> ans(n, 0);
+			ans[0] = minimum_s;
+			s -= minimum_s; 
+			for (int i = 0; i < n; i++)
+			{
+				long long add = min(k - 1, s); // Calculate the amount to add to ans[i]
+				ans[i] += add; // Add the calculated amount to ans[i]
+				s -= add; // Reduce s by the added amount
+			}
+
+			for (long long i = 0; i < n; i++)
+				cout << ans[i] << " ";
+			cout << endl;
+		}
 }
 
 /* ---------- Main ---------- */
