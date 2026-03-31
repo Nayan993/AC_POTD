@@ -93,33 +93,7 @@ void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout 
 
 /* ---------- Solve ---------- */
 void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
-    }
-    cout << st.size() << endl;
+    cout <<"safety";
 }
 
 /* ---------- Main ---------- */
@@ -128,33 +102,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-    return 0;
-}
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
-    }
-    cout << st.size() << endl;
-}
-
-/* ---------- Main ---------- */
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

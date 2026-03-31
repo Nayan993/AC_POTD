@@ -92,57 +92,26 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
+int func(int d, vector<int> &j, vector<int> &dp) {
+    if (d == 0) return 0;
+    if (d < 0) return INF;
+    if (dp[d] != -1) return dp[d];
+    int ans = INF;
+    for(int k = 0; k < j.size(); k++){
+        ans = min(ans, 1 + func(d - j[k], j, dp));
     }
-    cout << st.size() << endl;
+    return dp[d] = ans;
 }
 
-/* ---------- Main ---------- */
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-    return 0;
-}
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
-    }
-    cout << st.size() << endl;
+void solve() {
+    int n, d;
+    cin >> n >> d;
+    vector<int> j(n);
+    read(j);
+    vector<int> dp(d + 1, -1);
+    int ans = func(d, j, dp);
+    if (ans >= INF) cout << -1 << endl;
+    else cout << ans << endl;
 }
 
 /* ---------- Main ---------- */

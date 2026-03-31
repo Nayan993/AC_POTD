@@ -53,108 +53,109 @@ ll mod_add(ll a, ll b, ll m = MOD) { return (a % m + b % m) % m; }
 ll mod_sub(ll a, ll b, ll m = MOD) { return ((a % m - b % m) + m) % m; }
 ll mod_mul(ll a, ll b, ll m = MOD) { return (a % m * b % m) % m; }
 
-ll mod_exp(ll a, ll b, ll m = MOD) {
+ll mod_exp(ll a, ll b, ll m = MOD)
+{
     ll res = 1;
-    while (b > 0) {
-        if (b & 1) res = mod_mul(res, a, m);
+    while (b > 0)
+    {
+        if (b & 1)
+            res = mod_mul(res, a, m);
         a = mod_mul(a, a, m);
         b >>= 1;
     }
     return res;
 }
 
-ll binpow(ll b, ll n) {
+ll binpow(ll b, ll n)
+{
     ll result = 1;
-    while (n > 0) {
-        if (n & 1) result *= b;
+    while (n > 0)
+    {
+        if (n & 1)
+            result *= b;
         b *= b;
         n >>= 1;
     }
     return result;
 }
 
-bool prime(ll a) {
-    if (a <= 1) return false;
+bool prime(ll a)
+{
+    if (a <= 1)
+        return false;
     for (ll i = 2; i * i <= a; ++i)
-        if (a % i == 0) return false;
+        if (a % i == 0)
+            return false;
     return true;
 }
 
 /* ---------- Output Helpers ---------- */
 inline void yes() { cout << "YES\n"; }
-inline void no()  { cout << "NO\n"; }
+inline void no() { cout << "NO\n"; }
 
 /* ---------- IO Helpers ---------- */
 template <typename T>
-void read(vector<T>& v) { for (auto& x : v) cin >> x; }
+void read(vector<T> &v)
+{
+    for (auto &x : v)
+        cin >> x;
+}
 
 template <typename T>
-void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
-
-/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
-    }
-    cout << st.size() << endl;
+void print(const vector<T> &v)
+{
+    for (const auto &x : v)
+        cout << x << ' ';
+    cout << '\n';
 }
 
+ll func(vll &c, ll x, vll &dp)
+{
+    if (x == 0)
+        return 0;
+    if (x < 0)
+        return INF;
+
+    if (dp[x] != -1)
+        return dp[x];
+
+    ll ans = INF;
+
+    for (int k = 0; k < c.size(); k++)
+    {
+        ll res = func(c, x - c[k], dp);
+        if (res != INF) {
+            ans = min(ans, 1 + res);
+        }
+    }
+
+    return dp[x] = ans;  
+}
+
+void solve()
+{
+    ll n, x;
+    cin >> n >> x;
+
+    vll c(n);
+    read(c);
+
+    vll dp(x + 1, -1);
+
+    ll ans = func(c, x, dp);
+
+    if (ans == INF)
+        cout << -1 << endl;
+    else
+        cout << ans << endl;  
+}
 /* ---------- Main ---------- */
-int main() {
+int main()
+{
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-    return 0;
-}
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
-    }
-    cout << st.size() << endl;
-}
 
-/* ---------- Main ---------- */
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

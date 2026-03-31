@@ -92,34 +92,36 @@ template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
 /* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
+int bs(int i, vll &x){
+    int s = 0;
+    int e = x.size() - 1;
+    int ans = -1;
+    while(s <= e){
+        int m = (s + e) / 2;
+        if(x[m] <= i){
+            ans = m;
+            s = m + 1;
+        }
+        else{
+            e = m - 1;
+        }
     }
-    cout << st.size() << endl;
+    return ans == -1 ? 0 : (ans + 1);
+}
+void solve() {
+    int n;
+    cin >> n;
+    vll x(n);
+    read(x);
+    int q;
+    cin >> q;
+    vll m(q);
+    read(m);
+    sort(x.begin(), x.end());
+    for(int i = 0; i < q; i++){
+        cout << bs(m[i], x) << endl;
+    }
+    cout << endl;
 }
 
 /* ---------- Main ---------- */
@@ -128,33 +130,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-    return 0;
-}
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
-    }
-    cout << st.size() << endl;
-}
-
-/* ---------- Main ---------- */
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

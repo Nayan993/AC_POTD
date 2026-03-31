@@ -91,35 +91,24 @@ void read(vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
+int dp[5001][5001];
 /* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
+int func(int i, int j, string &s1, string &s2){
+    if(i == s1.size()) return s2.size() - j;
+    if(j == s2.size()) return s1.size() - i;
+
+    if(dp[i][j] != -1) return dp[i][j];
+    if(s1[i] == s2[j]) return dp[i][j] = func(i + 1, j + 1, s1, s2);
+    else{
+        return dp[i][j] =  1 + min({func(i + 1, j, s1, s2), func(i, j + 1, s1, s2), func(i + 1, j + 1, s1, s2)});
     }
-    cout << st.size() << endl;
+}
+void solve() {
+    string s1, s2;
+    cin >> s1 >> s2;
+    memset(dp, -1, sizeof(dp));
+    cout << func(0, 0, s1, s2) << endl;
+
 }
 
 /* ---------- Main ---------- */
@@ -128,33 +117,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-    return 0;
-}
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
-    }
-    cout << st.size() << endl;
-}
-
-/* ---------- Main ---------- */
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }

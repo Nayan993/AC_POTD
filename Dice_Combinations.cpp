@@ -91,35 +91,31 @@ void read(vector<T>& v) { for (auto& x : v) cin >> x; }
 template <typename T>
 void print(const vector<T>& v) { for (const auto& x : v) cout << x << ' '; cout << '\n'; }
 
-/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);/* ---------- Solve ---------- */
-void solve() {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    unordered_set<string> st;
-    while(!s.empty()){
-        string temp = s;
-        temp.erase(temp.begin());
-        st.insert(temp);
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
+int dp[1000001];
+
+int func(int sum, vector<int> &a){
+    if(sum < 0) return 0;
+    if(sum == 0) return 1;
+
+    if(dp[sum] != -1) return dp[sum];
+
+    int ways = 0;
+    for(int i = 0; i < a.size(); i++){
+        ways = (ways + func(sum - a[i], a)) % MOD;
     }
-    cout << st.size() << endl;
+
+    return dp[sum] = ways;
+}
+
+void solve() {
+    int n;
+    cin >> n;
+
+    vector<int> a = {1,2,3,4,5,6};
+
+    memset(dp, -1, sizeof(dp));
+
+    cout << func(n, a) << endl;
 }
 
 /* ---------- Main ---------- */
@@ -128,33 +124,6 @@ int main() {
     cin.tie(nullptr);
     cout.tie(nullptr);
     
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-    return 0;
-}
-        temp = s;
-        string s1 = temp.substr(0, 1);
-        (temp.size() > 1) ? temp.erase(0, 2) : temp.erase(0,1);
-        s1 += temp;
-        st.insert(s1);
-        (s.size() > 1) ? s.erase(0, 2) : s.erase(0, 1);
-    }
-    cout << st.size() << endl;
-}
-
-/* ---------- Main ---------- */
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }
